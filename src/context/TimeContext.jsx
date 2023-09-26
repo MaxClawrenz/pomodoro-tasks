@@ -16,8 +16,8 @@ export function TimeProvider({children}){
     const initialMainBreakTimeFourthPeriod = localStorage.getItem('mainBreakTimeFourthPeriod');
     const initialSwitchSound = localStorage.getItem('switchSound');
 
-    const [mainWorkTime, setMainWorkTime] = useState(initialMainWorkTime ? parseInt(initialMainWorkTime, 10) : 5);
-    const [mainBreakTime, setMainBreakTime] = useState(initialMainBreakTime? parseInt(initialMainBreakTime, 10) : 3);
+    const [mainWorkTime, setMainWorkTime] = useState(initialMainWorkTime ? parseInt(initialMainWorkTime, 10) : 1500);
+    const [mainBreakTime, setMainBreakTime] = useState(initialMainBreakTime? parseInt(initialMainBreakTime, 10) : 300);
     const [mainBreakTimeFourth, setMainBreakTimeFourth] = useState(initialMainBreakTimeFourth ? parseInt(initialMainBreakTimeFourth, 10) : 900);
     const [mainBreakTimeFourthPeriod, setMainBreakTimeFourthPeriod] = useState(initialMainBreakTimeFourthPeriod ? parseInt(initialMainBreakTimeFourthPeriod, 10) : 4);
     const [switchSound, setSwitchSound] = useState(initialSwitchSound !== null && initialSwitchSound !== 'false' ? true : false);
