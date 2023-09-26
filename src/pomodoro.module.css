@@ -1,0 +1,984 @@
+@font-face {
+    font-family: 'SF UI Display Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('SF UI Display Regular'), url('../public/fonts/sf-ui/SFUIText-Regular.woff') format('woff');
+    }
+@font-face {
+    font-family: 'SF UI Display';
+    font-style: normal;
+    font-weight: normal;
+    src: local('SF UI Display'), url('../public/fonts/sf-ui/sf-ui-display-light-58646b33e0551.woff') format('woff');
+    }
+html{
+    height: 100%;
+}
+
+body{
+    height: 100%;
+}
+#pomodoro_root{
+    height: 100%;
+}
+.header{
+    display: flex;
+    position: relative;
+    padding: 0 80px;
+    height: 70px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    background-color: #FFFFFF;
+    justify-content: space-between;
+    box-shadow: 0px 10px 63px 0px rgba(0, 0, 0, 0.07);
+}
+
+.PomodoroLogo{
+    width: 205px;
+    height: 40px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.PomodoroLink{
+    color: #DC3E22;
+    text-align: center;
+    font-family: SF UI Display;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 24px; /* 100% */
+    text-decoration: none;
+}
+
+.StatisticLink{
+    color: #DC3E22;
+    font-family: SF UI Display;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px; /* 106.25% */
+    text-decoration: none;
+}
+
+.StatisticDiv{
+    width: 114px;
+    height: 24px;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+}
+.StatisticDiv:hover svg g path{
+    fill: #B7280F;
+}
+.StatisticDiv:hover a{
+    color: #B7280F;
+}
+.Main{
+    display: flex;
+    padding: 100px 80px;
+    justify-content: space-between;
+    background-color: #fff;
+    height: 100%;
+}
+.MainStatistic{
+    display: flex;
+    padding: 100px 80px;
+    justify-content: space-between;
+    background-color: #fff;
+    height: 100%;
+    flex-direction: column;
+}
+.leftZone{
+    display: flex;
+    flex-direction: column;
+    padding: 0 65px 0 0;
+    width: 577px;
+}
+.rightZone{
+    display: flex;
+}
+.RulesTitle{
+    color: #333;
+    font-family: SF UI Display;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 33px; /* 137.5% */
+}
+.RulesList{
+    color: #333;
+    font-family: SF UI Display;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 33px;
+    list-style: none;
+    padding: unset;
+    margin: unset;
+}
+.RulesList li::before{
+    content: "\2022";
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    color: #B7280F;
+}
+.AddTaskInput{
+    width: 340px;
+    height: 55px;
+    flex-shrink: 0;
+    background: #F4F4F4;
+    padding: 0 15px;
+    border: unset;
+    color: #999;
+    font-family: SF UI Display;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 17px; 
+    margin: 25px 0;
+}
+.ButtonCreateTask{
+    display: inline-flex;
+    justify-content: center;
+    height: 55px;
+    padding: 15px 50px;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    color: #FFFFFF;
+    background: #A8B64F;
+    border: unset;
+    width: 173px;
+}
+.ButtonCreateTask:hover{
+    background: #899441;
+    cursor: pointer;
+}
+.TimerDiv{
+    width: 733px;
+    height: 507px;
+    flex-shrink: 0;
+    background: #F4F4F4;
+}
+
+.TimerHeader{
+    height: 55px;
+    background: #C4C4C4;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.TimerHeaderActive{
+    background: #DC3E22;
+}
+.timerHeaderTaskname{
+    color: #FFF;
+    font-family: SF UI Display;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 17px; /* 106.25% */
+}
+.timerHeaderPomodoroCounter{
+    color: #FFF;
+    font-family: SF UI Display;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px; /* 106.25% */
+}
+.timerWithButton{
+    display: flex;
+    align-items: center;
+    margin-top: 70px;
+}
+
+.Timer{
+    color: #333;
+    /* font-family: SF UI Display; */
+    font-size: 150px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
+    margin-left: 178px; /*сомнительное решение, но пока так*/
+    width: 370px;
+}
+.TimerActive{
+    color: #DC3E22;
+}
+.TimerCounterRelax{
+    color: #A8B64F;
+}
+.TimerPlus{
+    margin-left: 25px;
+}
+.TimerPlus:hover{
+    cursor: pointer;
+}
+.TimerPlus:hover svg circle{
+    fill: #899441;
+}
+
+.TaskName{
+    font-family: SF UI Display;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px;
+    text-align: center;
+}
+.taskLabel{
+    color: #999;
+}
+.taskTitle{
+    color: #333;
+    font-family: SF UI Display;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px;
+    text-align: center;
+}
+.timerButtons{
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.TimerButtonStart{
+    display: inline-flex;
+    height: 55px;
+    padding: 15px 50px;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    background: #A8B64F;
+    color: var(--white, #FFF);
+    text-align: center;
+    font-family: SF UI Display;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 17px; /* 106.25% */
+    border: unset;
+}
+.TimerButtonStart:hover{
+    background: #899441;
+    cursor: pointer;
+}
+.TimerButtonStop[disabled]{
+    display: inline-flex;
+    height: 55px;
+    padding: 15px 50px;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    border: 2px solid #C4C4C4;
+    color: #C4C4C4;
+    text-align: center;
+    font-family: SF UI Display;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 17px; /* 106.25% */
+    margin-left: 25px;
+}
+
+.TimerButtonStop{
+    display: inline-flex;
+    height: 55px;
+    padding: 15px 50px;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    border: 2px solid #DC3E22;
+    color: #DC3E22;
+    text-align: center;
+    font-family: SF UI Display;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 17px; /* 106.25% */
+    margin-left: 25px;
+}
+.TimerButtonStop:hover:not([disabled]){
+    background: #DC3E22;
+    cursor: pointer;
+    color: #FFFFFF;
+}
+.tasksForm{
+    display: flex;
+    flex-direction: column;
+    width: 370px;
+}
+.taskList{
+    display: flex;
+    
+}
+.taskUl{
+    padding: unset;
+    width: 100%;
+}
+.Task{
+    list-style: none;
+    border-top: 1px solid #E4E4E4;
+}
+.pomodoroCount{
+    color: #333;
+    font-family: SF UI Display;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 17px;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #C4C4C4;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+.taskElem{
+    display: flex;
+    align-items: center;
+    height: 55px;
+    justify-content: space-between;
+}
+.tasksTotal{
+    display: flex;
+    align-items: center;
+    height: 55px;
+    color: #999;
+    font-family: SF UI Display;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 17px;
+}
+.DropDownButton{
+    display: flex;
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    cursor: pointer;
+    position: relative;
+    align-items: center;
+}
+.taskLeft{
+    display: flex;
+    align-items: center;
+}
+
+.DropDownMenu{
+    display: flex;
+    /* width: 165px; */
+    height: 153px;
+    flex-shrink: 0;
+    background-color: #fff;
+    border: 1px solid #C4C4C4;
+    position: absolute;
+    top: 31px;
+    left: -69px;
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.DropDownMenu::before, .block::after {
+    content: '';
+    position: absolute;
+    left: 71px;
+    top: -18px;
+    border: 10px solid transparent;
+    border-bottom: 8px solid #C4C4C4;
+}
+.DropDownMenu::after {
+    content: '';
+    position: absolute;
+    left: 71px;
+    top: -16px;
+    border: 10px solid transparent;
+    border-bottom: 8px solid #fff;
+}
+.DropDownMenuList{
+    padding: unset;
+}
+.DropDownItem{
+    display: flex;
+    height: 36px;
+    padding: 0 12px;
+    align-items: center;
+}
+.DropDownItem:hover{
+    background: #F4F4F4;
+}
+
+.DropDownItem svg{
+    margin-right: 8px;
+}
+.disabled path {
+    fill: #C4C4C4 !important;
+}
+.ModalDelete{
+    background: rgba(0, 0, 0, 0.50);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ModalDeleteDiv{
+    width: 326px;
+    height: 151px;
+    background: #FFF;
+    padding: 12px;
+}
+
+.ModalDeleteHeader{
+    display: flex;
+    justify-content: center;
+    margin-top: -10px;
+}
+
+.ModalDeleteClose{
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+.deletingControls{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.deleteButton{
+    margin: 25px 0 10px 0;
+    cursor: pointer;
+    display: inline-flex;
+    height: 55px;
+    padding: 15px 50px;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    background: #DC3E22;
+    color: #FFF;
+    border: unset;
+    text-align: center;
+    font-family: SF UI Display;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 17px; /* 106.25% */
+}
+.deleteCancel{
+    color: #333;
+    font-family: SF UI Display;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 17px; /* 106.25% */
+    cursor: pointer;
+    text-decoration: underline;
+}
+.ModalDeleteLabel{
+    color: #333;
+    font-family: SF UI Display;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px; /* 70.833% */
+}
+.TaskEditBlock{
+    display: flex;
+    align-items: center;
+    height: 55px;
+    width: 90%;
+    padding-left: 35px;
+    justify-content: space-between;
+}
+.TaskEditInput{
+    border: unset;
+    color: #333;
+    font-family: SF UI Display;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px;
+    width: 100%;
+}
+
+.TaskEditInput:focus{
+    outline: none;
+}
+.TaskEditAccept{
+    border: 1px solid #C4C4C4;
+    background-color: unset;
+    cursor: pointer;
+    width: 26px;
+    height: 26px;
+    padding: unset;
+}
+.TimerRelax{
+    background: #A8B64F;
+}
+.StatisticTitle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.StatisticTitleText{
+    color: #333;
+    font-family: SF UI Display;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 33px; /* 137.5% */
+}
+
+.StatisticMainFilter{
+    width: 340px;
+    height: 55px;
+    background: #F4F4F4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+}
+
+.StatisticGraphics{
+    display: flex;
+    margin-top: 30px;
+}
+.leftGraphics{
+    display: flex;
+    flex-direction: column;
+    margin-right: 32px;
+}
+.mainGraphic{
+    display: flex;
+    width: 100%;
+    background: #F4F4F4;
+    justify-content: flex-start;
+}
+.StatisticActivityPomodoros{
+    display: flex;
+    width: 296px;
+    height: 179px;
+    background: #F4F4F4;
+    margin-top: 32px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.StatisticActivityDays{
+    display: flex;
+    width: 246px;
+    height: 210px;
+    background: #F4F4F4;
+    padding: 25px;
+    flex-direction: column;
+}
+.StatisticFooter{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+}
+.FooterFocus{
+    display: flex;
+    background: #F4F4F4;
+    width: 355px;
+    height: 129px;
+    padding: 25px;
+    justify-content: space-between;
+}
+.FooterPauses{
+    display: flex;
+    background: #F4F4F4;
+    width: 355px;
+    height: 129px;
+    padding: 25px;
+    justify-content: space-between;
+}
+.FooterStops{
+    display: flex;
+    background: #F4F4F4;
+    width: 355px;
+    height: 129px;
+    padding: 25px;
+    justify-content: space-between;
+}
+.StatisticTitleFilter{
+    position: relative;
+    filter: drop-shadow(0px 10px 63px rgba(0, 0, 0, 0.07));
+}
+.filtersContainer{
+    position: absolute;
+}
+.filterIcon{
+    transition: 0.2s;
+    transform: rotate(0deg);
+}
+.reverse {
+    transition: 0.2s;
+    transform: rotate(180deg);
+}
+.StatisticFilterElement{
+    width: 340px;
+    height: 55px;
+    background: #F4F4F4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    border-top: 1px solid #DEDEDE;;
+}
+.curDayName{
+    color: #333;
+    font-family: SF UI Display;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 33px; /* 137.5% */
+}
+.timeInfo{
+    color: #333;
+    font-family: SF UI Display;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px; /* 175% */
+    margin-top: 14px;
+}
+.dayTimeSpan{
+    color: #DC3E22;
+    font-weight: 700;
+}
+.pomodorosCounterHeader{
+    display: flex;
+    margin-top: 23px;
+}
+.pomodorosCounterFooter{
+    background: #DC3E22;
+    color: #FFF;
+    height: 51px;
+    text-align: center;
+    font-family: SF UI Display;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 33px;
+    width: 100%;
+    display: flex;
+    /* margin-top: 24px; */
+    align-items: center;
+    justify-content: center;
+}
+
+.pomodorosCounterFooterEmpty{
+    height: 51px;
+    text-align: center;
+    font-family: SF UI Display;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 33px;
+    width: 100%;
+    display: flex;
+    /* margin-top: 24px; */
+    align-items: center;
+    justify-content: center;
+}
+.pomodoroSmile{
+    margin-top: 10px;
+}
+.PomodoroCounter{
+    display: flex;
+    align-items: center;
+}
+.PomodoroCounterText{
+    color: #999;
+    font-family: SF UI Display;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 33px; /* 137.5% */
+    margin-left: 15px;
+}
+.FooterFocusName{
+    color: #333;
+    font-family: SF UI Display;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 33px; /* 137.5% */
+}
+.FooterFocusNumber{
+    color: #333;
+    font-family: SF UI Display;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.vidjetLeftZone{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.FooterFocusActive{
+    background: #FFDDA9;
+}
+.FooterFocusActive svg path{
+    stroke: #FFAE35;
+}
+.FooterPausesActive{
+    background: #DFDCFE;
+}
+.FooterPausesActive svg path{
+    stroke: #9C97D7;
+}
+.FooterStopsActive{
+    background: #C5F1FF;
+}
+.FooterStopsActive svg path{
+    stroke: #7FC2D7;
+}
+.StatisticMainGraphic{
+    width: 100%;
+}
+.StatisticMainGraphic canvas{
+    width: 100%;
+    height: 80%;
+    padding-right: 20px;
+    padding-bottom: 24px;
+    padding-top: 40px;
+}
+.graphicFooter{
+    font-family: SF UI Display;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display: flex;
+    width: 86.5%;
+    justify-content: space-around;
+    align-items: center;
+    height: 52.5px;
+}
+.graphicFooterBack{
+    width: 100%;
+    background: #ECECEC;
+    position: relative;
+    margin-top: -53px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 20px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 25px;
+    width: 25px;
+    left: 0px;
+    bottom: 4px;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    box-shadow: 0 0px 15px #2020203d;
+    background: white url('https://i.ibb.co/FxzBYR9/night.png');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196f3;
+  }
+  
+  
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(24px);
+    -ms-transform: translateX(24px);
+    transform: translateX(24px);
+    background: white url('https://i.ibb.co/7JfqXxB/sunny.png');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+.slider.round {
+    border-radius: 34px;
+}
+  
+.slider.round::before {
+    border-radius: 50%;
+}
+
+.slider2 {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+
+.slider2:before {
+    position: absolute;
+    content: "";
+    height: 25px;
+    width: 25px;
+    left: 0px;
+    bottom: 4px;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    box-shadow: 0 0px 15px #2020203d;
+    background: white url('/src/Icons/soundOff.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 15px;
+  }
+  
+  input:checked + .slider2 {
+    background-color: #DC3E22;
+  }
+  
+  
+  
+  input:checked + .slider2:before {
+    -webkit-transform: translateX(24px);
+    -ms-transform: translateX(24px);
+    transform: translateX(24px);
+    background: white url('/src/Icons/soundOn.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 15px;
+  }
+
+.slider2.round {
+    border-radius: 34px;
+}
+  
+.slider2.round::before {
+    border-radius: 50%;
+}
+
+
+
+.NightModeSwitch{
+    display: flex;
+}
+
+
+  
+.TimerColonActive{
+    animation: blink 1s infinite;
+}
+@keyframes blink {
+    from { opacity: 1; }
+    to { opacity: 0; }
+   }
+
+.SettingsDiv{
+    display: flex;
+    align-items: center;
+    width: 120px;
+    justify-content: space-between;
+}
+.SettingsBlock{
+    cursor: pointer;
+    transition: 0.5s;
+    height: 24px;
+}
+.SettingsBlock:hover svg path{
+    fill: #DC3E22;
+    transition: 0.5s;
+}
+.SettingsBlockSelected{
+    transition: 0.5s;
+    transform: rotate(260deg);
+    fill: #DC3E22;
+}
+.ModalSettings{
+    width: 500px;
+    background-color: #fff;
+    padding: 12px;
+}
+.ModalSettingsHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.settingsElem{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    align-items: center;
+}
+.settingsElemRight{
+    display: flex;
+    width: 180px;
+    align-items: center;
+}
+.settingsLabel{
+    width: 300px;
+}
+.settingInput{
+    width: 50px;
+    padding: 5px;
+}
+.ModalSettingsTitle{
+    color: #333;
+    font-family: SF UI Display;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 33px;
+}
+.settingInput{
+    margin-right: 10px;
+}
+.spanEditLabel{
+    color: #a2a0a0;
+}

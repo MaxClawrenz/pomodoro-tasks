@@ -1,0 +1,60 @@
+.night{
+    filter: invert(1);
+}
+
+.night #switch {
+    filter: invert(1);
+}
+
+
+#pomodoro_root{
+    height: 100%;
+}
+
+
+.taskItem-enter {
+    opacity: 0;
+  }
+  .taskItem-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+  }
+  .taskItem-exit {
+    opacity: 1;
+  }
+  .taskItem-exit-active {
+    opacity: 0;
+    transition: opacity 500ms ease-in;
+  }
+
+
+  .taskTimer-enter {
+    opacity: 0;
+  }
+  .taskTimer-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+  }
+  .taskTimer-exit {
+    opacity: 1;
+  }
+  .taskTimer-exit-active {
+    opacity: 0;
+    transition: opacity 500ms ease-in;
+  }
+
+
+  .ModalDeleteWindow-enter {
+    opacity: 0;
+  }
+  .ModalDeleteWindow-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+  }
+  .ModalDeleteWindow-exit {
+    opacity: 1;
+  }
+  .ModalDeleteWindow-exit-active {
+    opacity: 0;
+    transition: opacity 500ms ease-in;
+  }
