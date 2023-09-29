@@ -19,6 +19,7 @@ export function usePomodorosCheck(){
             //setTimerStatus('break_started');
               return {
                 ...task,
+                //status: 'ready',
                 allPomodoros: updatedPomodoros
               };
           }
