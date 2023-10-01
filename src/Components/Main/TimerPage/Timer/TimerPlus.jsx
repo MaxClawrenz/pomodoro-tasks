@@ -1,10 +1,12 @@
 import React, { useContext } from "react"
 import classes from '../../../../pomodoro.module.css'
 import { TaskContext } from "../../../../context/TaskContext";
+import { TimeContext } from "../../../../context/TimeContext";
 
 function TimerPlus(){
 
     const { tasks, setTasks } = useContext(TaskContext);
+    const {mainWorkTime} = useContext(TimeContext);
     let uncompleteTasks = tasks.filter(task => task.status === 'ready' || task.status === 'started');
 
     function handleDecrease(){
@@ -20,7 +22,7 @@ function TimerPlus(){
                 return {
                     ...task,
                     pomodoro: task.pomodoro + 1,
-                    weight: task.weight + 25,
+                    weight: task.weight + mainWorkTime,
                     allPomodoros: allPomodorosNew
                 }
             }

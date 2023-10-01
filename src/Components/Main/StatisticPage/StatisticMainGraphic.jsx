@@ -40,13 +40,15 @@ function StatisticMainGraphic(){
     curWeek.days.map(day => {
       let tempTime = 0;
       tasks.map(element => {
-        if(element.id.split('T')[0] === day.date && element.status !== 'ready'){
+        if(element.finishDate){
+        if(element.finishDate.split('T')[0] === day.date && element.status !== 'ready'){
             element.allPomodoros.map(pomodoro => {
                 if(pomodoro.status === 'complete' && pomodoro.type === 'pomodoro'){
                     tempTime += moment(pomodoro.timeFinish).diff(moment(pomodoro.timeStart), 'seconds');
                 }
             })
         }
+      }
     })
     tempArray.push(Math.round(tempTime/60));
     if(!day.today){

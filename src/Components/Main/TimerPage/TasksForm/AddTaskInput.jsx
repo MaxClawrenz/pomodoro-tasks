@@ -2,12 +2,14 @@ import React, { useContext, useState } from "react"
 import classes from '../../../../pomodoro.module.css' 
 import { TaskContext } from "../../../../context/TaskContext";
 import TaskList from "./TaskList";
+import { TimeContext } from "../../../../context/TimeContext";
 
 
 function AddTaskInput(){
 
     const [nameTask, setNameTask] = useState('');
     const { tasks, addTask} = useContext(TaskContext);
+    const {mainWorkTime} = useContext(TimeContext);
 
     function handleChange(event){
         setNameTask(event.target.value);
@@ -19,7 +21,7 @@ function AddTaskInput(){
 
     function handleSubmit(){
         if(nameTask){
-            const newTaskObj = {id: newId(), number: tasks.length+1, name: nameTask, pomodoro: 1, status: 'ready', weight: 25, 
+            const newTaskObj = {id: newId(), number: tasks.length+1, name: nameTask, pomodoro: 1, status: 'ready', weight: mainWorkTime, finishDate: '', 
             allPomodoros: [{number: 1, status: 'ready', type: 'pomodoro', timeStart: 0, timeFinish: 0}, {number: 1, status: 'ready', type: 'break', timeStart: 0, timeFinish: 0}]};
             addTask(newTaskObj);
             setNameTask('');

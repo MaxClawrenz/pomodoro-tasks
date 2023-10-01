@@ -7,6 +7,8 @@ export function useWeeksDay(){
     const today = moment().format('YYYY-MM-DD');
     
     const weekDays =  ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thurday', 'Friday', 'Saturday'];
+   
+    
     let allWeeks = [];
     let i = 0;
    for(let newDate = startDate; newDate.format('YYYY-MM-DD') <= lastDate; newDate = startDate.add(1, 'days')){
@@ -36,6 +38,8 @@ export function useWeeksDay(){
         i++
    }
    
+   //console.log('allWeeks',allWeeks)
+
    return allWeeks.sort((a,b) => {
     if(a.name < b.name){
       return -1;
@@ -46,5 +50,8 @@ export function useWeeksDay(){
     return 0;
    })
 
+
+
+   
 }
 

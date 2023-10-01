@@ -8,7 +8,7 @@ import { TimeContext } from "../../../../context/TimeContext";
 
 function TaskList(){
     
-    const {tasks} = useContext(TaskContext);
+    const {tasks, setTasks} = useContext(TaskContext);
     let uncompleteTasks = tasks.filter(task => task.status === 'ready');
     const {mainWorkTime} = useContext(TimeContext);
     const [weightSumm, setWeightSumm] = useState(0);
@@ -29,6 +29,23 @@ function TaskList(){
 
         setWeightSumm(allTime);
     }, [tasks, mainWorkTime])
+
+    useEffect(()=>{
+        
+        setTasks(
+            tasks.map(task => {
+                if(task.status === 'ready'){
+                    return {
+                        ...task,
+                        weight: mainWorkTime
+                    }
+                }
+                return task
+            })
+        )
+        
+
+    }, [mainWorkTime])
     
 
     useEffect(()=>{

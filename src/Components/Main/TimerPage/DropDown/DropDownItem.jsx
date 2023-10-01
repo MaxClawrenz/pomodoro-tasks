@@ -2,12 +2,13 @@ import React, { useContext } from "react"
 import classes from '../../../../pomodoro.module.css'
 import PropTypes from 'prop-types';
 import {TaskContext} from '../../../../context/TaskContext'
+import { TimeContext } from "../../../../context/TimeContext";
 
 
 function DropDownItem(props){
     
     const { setTasks } = useContext(TaskContext);
-    
+    const {mainWorkTime} = useContext(TimeContext);
 
     function handleFunctional(){
         
@@ -24,13 +25,13 @@ function DropDownItem(props){
                     return {
                         ...task,
                         pomodoro: task.pomodoro + 1,
-                        weight: task.weight + 25,
+                        weight: task.weight + mainWorkTime,
                         allPomodoros: allPomodorosNew
                     }
                 }
                 return task
             }))
-        }else if(props.functional === 'decrease' && props.weight > 25){
+        }else if(props.functional === 'decrease' && props.weight > mainWorkTime){
             setTasks(tasks => tasks.map(task => {
                 if(task.id === props.id){
                     let pomodoroOnlyTasks = task.allPomodoros.filter(task => task.type === 'pomodoro');
@@ -40,7 +41,7 @@ function DropDownItem(props){
                     return {
                         ...task,
                         pomodoro: task.pomodoro - 1,
-                        weight: task.weight - 25,
+                        weight: task.weight - mainWorkTime,
                         allPomodoros: allPomodorosNew
                     }
                 }

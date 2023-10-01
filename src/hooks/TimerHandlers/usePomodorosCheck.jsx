@@ -13,6 +13,7 @@ export function usePomodorosCheck(){
               return {
                 ...task,
                 status: 'complete',
+                finishDate: new Date().toJSON(),
                 allPomodoros: updatedPomodoros
               }
           }else{

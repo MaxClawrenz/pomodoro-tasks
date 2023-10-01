@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 import classes from '../../pomodoro.module.css'
+import { TimeContext } from "../../context/TimeContext";
 
 function Minus(props){
 
     const [isDisabled, setIsDisabled] = useState('disabled');
+    const {mainWorkTime} = useContext(TimeContext);
 
     useEffect(()=>{
-        if(props.weight === 25){
+        if(props.weight === mainWorkTime){
             setIsDisabled('disabled');
         }else{
             setIsDisabled('');
