@@ -9,7 +9,7 @@ import { TimeContext } from "../../../../context/TimeContext";
 function TaskList(){
     
     const {tasks, setTasks} = useContext(TaskContext);
-    let uncompleteTasks = tasks.filter(task => task.status === 'ready');
+    let uncompleteTasks = tasks.filter(task => task.status === 'ready' || task.status === 'started');
     const {mainWorkTime} = useContext(TimeContext);
     const [weightSumm, setWeightSumm] = useState(0);
     const [duration, setDuration] = useState({});
@@ -64,7 +64,7 @@ function TaskList(){
             <TransitionGroup component={null}>
             {uncompleteTasks.length > 0 && 
             uncompleteTasks.map(task => {
-                    if(task.status === 'ready'){
+                    if(task.status === 'ready' || task.status === 'started'){
                     return (
                     <CSSTransition
                         key={task.id}

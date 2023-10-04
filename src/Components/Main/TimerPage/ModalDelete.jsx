@@ -2,13 +2,21 @@ import React, { useContext } from "react"
 import classes from '../../../pomodoro.module.css'
 import PropTypes from 'prop-types'
 import { TaskContext } from "../../../context/TaskContext"
+import { TimeContext } from "../../../context/TimeContext";
 
 function ModalDelete(props){
 
-    const { setTasks } = useContext(TaskContext);
+    const {tasks, setTasks } = useContext(TaskContext);
+    const {stopTimer, setTime, mainWorkTime} = useContext(TimeContext);
 
     function TaskDelete(){
+        let deletedTask = tasks.find(task => task.id === props.id)
+
         setTasks(prevState => prevState.filter(task => task.id !== props.id));
+        if(deletedTask.status === 'started'){
+            stopTimer();
+            setTime(mainWorkTime);
+        }
     }
 
     return (
