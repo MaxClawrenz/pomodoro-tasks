@@ -35,7 +35,7 @@ function StatisticActivityDays(){
                 setDayName('Пятница')
                 break;
             case 'Saturday':
-                setDayName('Субботу')
+                setDayName('Суббота')
                 break;
             case 'Sanday':
                 setDayName('Воскресенье')
